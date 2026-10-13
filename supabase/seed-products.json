@@ -1,0 +1,187 @@
+[
+  {
+    "slug": "serum-anti-age",
+    "name_fr": "Sérum Anti-Âge",
+    "name_ar": "سيروم مضاد للتجاعيد",
+    "tagline_fr": "Le sérum huileux aux 4 huiles précieuses du Maroc",
+    "tagline_ar": "سيروم زيتي بأربعة زيوت مغربية فاخرة",
+    "description_fr": "Un sérum nourrissant qui associe l'huile d'argan, l'huile de figue de Barbarie, l'huile de macadamia et l'huile d'amande douce, enrichi en vitamine E. Il aide à lisser le grain de peau, à réduire l'aspect des rides et à redonner de l'éclat et de la souplesse à votre visage.",
+    "description_ar": "سيروم مغذٍّ يجمع بين زيت الأركان وزيت التين الشوكي وزيت المقاديميا وزيت اللوز الحلو، مدعّم بفيتامين E. يساعد على تنعيم البشرة وتخفيف مظهر التجاعيد ومنح الوجه نضارة ومرونة.",
+    "benefits_fr": [
+      "Aide à atténuer l'aspect des rides et ridules",
+      "Nourrit en profondeur sans effet gras persistant",
+      "Redonne éclat et souplesse à la peau",
+      "Formule 100 % naturelle, enrichie en vitamine E"
+    ],
+    "benefits_ar": [
+      "يساعد على تخفيف مظهر التجاعيد والخطوط الدقيقة",
+      "يغذي البشرة بعمق دون إحساس بالدهون",
+      "يمنح البشرة نضارة ومرونة",
+      "تركيبة طبيعية 100% غنية بفيتامين E"
+    ],
+    "ingredients_fr": "Huile d'argan, huile de figue de Barbarie, huile de macadamia, huile d'amande douce, vitamine E.",
+    "ingredients_ar": "زيت الأركان، زيت التين الشوكي، زيت المقاديميا، زيت اللوز الحلو، فيتامين E.",
+    "usage_fr": "Le soir, sur peau propre et sèche, déposer 3 à 4 gouttes dans la paume, réchauffer et appliquer par légers massages sur le visage et le cou. À utiliser seul ou sous votre crème.",
+    "usage_ar": "مساءً على بشرة نظيفة وجافة، ضعي 3 إلى 4 قطرات في راحة اليد، دفّئيها ودلّكي بها الوجه والرقبة بلطف. يستعمل لوحده أو قبل الكريم.",
+    "size": "30 ml",
+    "price": 249,
+    "compare_at_price": 329,
+    "disc_2": 10,
+    "disc_3": 15,
+    "stock": 50,
+    "category": "serum",
+    "is_featured": true,
+    "sort_order": 1,
+    "images": [
+      "/products/serum-anti-age-1.jpg"
+    ]
+  },
+  {
+    "slug": "creme-de-nuit-anti-age",
+    "name_fr": "Crème de Nuit Anti-Âge",
+    "name_ar": "كريم الليل المضاد للتجاعيد",
+    "tagline_fr": "Hydrate et répare pendant votre sommeil",
+    "tagline_ar": "ترطيب وعناية مكثفة أثناء نومك",
+    "description_fr": "Une crème de nuit riche, formulée avec des actifs 100 % naturels : huile d'argan, huile de macadamia et huile de figue de Barbarie. Elle hydrate, nourrit et aide à garder une peau plus jeune et plus lumineuse au réveil.",
+    "description_ar": "كريم ليلي غني بمستحضرات طبيعية 100%: زيت الأركان وزيت المقاديميا وزيت التين الشوكي. يرطب ويغذي ويساعد على بشرة أكثر شباباً ونضارة عند الاستيقاظ.",
+    "benefits_fr": [
+      "Hydratation intense toute la nuit",
+      "Aide à prévenir et atténuer les signes de l'âge",
+      "Texture riche qui se fond dans la peau",
+      "Actifs 100 % naturels"
+    ],
+    "benefits_ar": [
+      "ترطيب مكثف طوال الليل",
+      "يساعد على الوقاية من علامات التقدم في السن وتخفيفها",
+      "قوام غني يذوب في البشرة",
+      "مكونات طبيعية 100%"
+    ],
+    "ingredients_fr": "Huile d'argan, huile de macadamia, huile de figue de Barbarie. (Liste INCI complète sur l'emballage.)",
+    "ingredients_ar": "زيت الأركان، زيت المقاديميا، زيت التين الشوكي. (القائمة الكاملة للمكونات على العلبة.)",
+    "usage_fr": "Chaque soir, appliquer une petite quantité sur le visage et le cou propres, masser jusqu'à absorption.",
+    "usage_ar": "كل مساء، ضعي كمية صغيرة على الوجه والرقبة النظيفين ودلّكي حتى الامتصاص.",
+    "size": "",
+    "price": 229,
+    "compare_at_price": 299,
+    "disc_2": 10,
+    "disc_3": 15,
+    "stock": 50,
+    "category": "creme",
+    "is_featured": true,
+    "sort_order": 2,
+    "images": [
+      "/products/creme-de-nuit-anti-age-1.jpg"
+    ]
+  },
+  {
+    "slug": "masque-eclat-rose",
+    "name_fr": "Masque Éclat Rose",
+    "name_ar": "ماسك النضارة بالورد",
+    "tagline_fr": "Le masque qui illumine et unifie le teint",
+    "tagline_ar": "ماسك يمنح الإشراقة ويوحّد لون البشرة",
+    "description_fr": "Un masque visage à la rose et aux extraits naturels (argan, figue de Barbarie, aloe vera, hamamélis, arnica, thé vert) pour aider à atténuer l'aspect des taches et révéler un teint plus éclatant.",
+    "description_ar": "ماسك للوجه بالورد ومستخلصات طبيعية (الأركان، التين الشوكي، الصبار، الهاماميليس، الأرنيكا، الشاي الأخضر) يساعد على تفتيح البشرة وتخفيف مظهر التصبغات.",
+    "benefits_fr": [
+      "Aide à atténuer l'aspect des taches et du teint terne",
+      "Effet bonne mine immédiat",
+      "Apaise et hydrate grâce à l'aloe vera",
+      "Extraits 100 % naturels"
+    ],
+    "benefits_ar": [
+      "يساعد على تخفيف مظهر التصبغات والبشرة الباهتة",
+      "إشراقة فورية على الوجه",
+      "يهدئ ويرطب بفضل الصبار",
+      "مستخلصات طبيعية 100%"
+    ],
+    "ingredients_fr": "Huile d'argan, huile de figue de Barbarie, aloe vera, extrait de rose, hamamélis, arnica, thé vert. (Liste à vérifier avec l'emballage.)",
+    "ingredients_ar": "زيت الأركان، زيت التين الشوكي، الصبار، مستخلص الورد، الهاماميليس، الأرنيكا، الشاي الأخضر. (يرجى التحقق من العلبة.)",
+    "usage_fr": "Appliquer une couche généreuse sur peau propre, laisser poser 10 à 15 minutes puis rincer à l'eau tiède. 2 à 3 fois par semaine.",
+    "usage_ar": "ضعي طبقة سخية على بشرة نظيفة واتركيها 10 إلى 15 دقيقة ثم اغسليها بماء فاتر. مرتين إلى ثلاث مرات في الأسبوع.",
+    "size": "100 ml",
+    "price": 149,
+    "compare_at_price": 199,
+    "disc_2": 10,
+    "disc_3": 15,
+    "stock": 50,
+    "category": "masque",
+    "is_featured": true,
+    "sort_order": 3,
+    "images": [
+      "/products/masque-eclat-rose-1.jpg"
+    ]
+  },
+  {
+    "slug": "huile-seche-moukhalat",
+    "name_fr": "Huile Sèche Moukhalat",
+    "name_ar": "زيت جاف مخلّط",
+    "tagline_fr": "Corps lumineux, parfum envoûtant, hydratation qui dure",
+    "tagline_ar": "جسم لامع، رائحة ساحرة، ترطيب يدوم",
+    "description_fr": "Une huile sèche multi-usage à l'huile d'amande douce et à l'huile d'argan, enrichie en vitamine E. Elle nourrit en profondeur, laisse un fini satiné non gras et un parfum qui vous accompagne toute la journée.",
+    "description_ar": "زيت جاف متعدد الاستعمالات بزيت اللوز الحلو وزيت الأركان مع فيتامين E. يغذي بعمق ويترك لمسة حريرية غير دهنية ورائحة ترافقك طوال اليوم.",
+    "benefits_fr": [
+      "Fini sec, non gras, absorption rapide",
+      "Nourrit et adoucit la peau du corps",
+      "Éclat naturel et parfum qui dure",
+      "Huile d'amande douce, argan et vitamine E"
+    ],
+    "benefits_ar": [
+      "قوام جاف غير دهني وامتصاص سريع",
+      "يغذي ويطري بشرة الجسم",
+      "لمعان طبيعي ورائحة تدوم",
+      "زيت اللوز الحلو والأركان وفيتامين E"
+    ],
+    "ingredients_fr": "Huile d'amande douce, huile d'argan, vitamine E. (Liste à vérifier avec l'emballage.)",
+    "ingredients_ar": "زيت اللوز الحلو، زيت الأركان، فيتامين E. (يرجى التحقق من العلبة.)",
+    "usage_fr": "Vaporiser sur le corps et les cheveux après la douche ou à tout moment de la journée, et masser légèrement.",
+    "usage_ar": "رشّي على الجسم والشعر بعد الاستحمام أو في أي وقت من اليوم ودلّكي بلطف.",
+    "size": "100 ml",
+    "price": 189,
+    "compare_at_price": 249,
+    "disc_2": 10,
+    "disc_3": 15,
+    "stock": 50,
+    "category": "huile",
+    "is_featured": false,
+    "sort_order": 4,
+    "images": [
+      "/products/huile-seche-moukhalat-1.jpg"
+    ]
+  },
+  {
+    "slug": "gel-gommage-visage",
+    "name_fr": "Gel Gommage Visage",
+    "name_ar": "جل مقشر للوجه",
+    "tagline_fr": "Exfolie en douceur, hydrate en profondeur",
+    "tagline_ar": "تقشير لطيف وترطيب عميق",
+    "description_fr": "Un gel gommant qui associe l'aloe vera, pour une hydratation en profondeur, et des grains de figue de Barbarie qui exfolient la peau en douceur. Résultat : une peau nette, douce et visiblement plus lumineuse.",
+    "description_ar": "جل مقشر يجمع بين الصبار لترطيب عميق وحبيبات التين الشوكي التي تقشر البشرة بلطف. النتيجة بشرة نقية وناعمة وأكثر إشراقاً.",
+    "benefits_fr": [
+      "Élimine les cellules mortes en douceur",
+      "Hydrate grâce à l'aloe vera",
+      "Peau plus lisse et plus lumineuse",
+      "Grains naturels de figue de Barbarie"
+    ],
+    "benefits_ar": [
+      "يزيل الخلايا الميتة بلطف",
+      "يرطب بفضل الصبار",
+      "بشرة أنعم وأكثر إشراقاً",
+      "حبيبات طبيعية من التين الشوكي"
+    ],
+    "ingredients_fr": "Aloe vera, grains de figue de Barbarie. (Liste INCI complète sur l'emballage.)",
+    "ingredients_ar": "الصبار، حبيبات التين الشوكي. (القائمة الكاملة للمكونات على العلبة.)",
+    "usage_fr": "Sur visage humide, masser doucement en mouvements circulaires en évitant le contour des yeux, puis rincer. 1 à 2 fois par semaine.",
+    "usage_ar": "على وجه رطب، دلّكي بحركات دائرية لطيفة مع تجنب محيط العينين ثم اغسلي. مرة إلى مرتين في الأسبوع.",
+    "size": "",
+    "price": 119,
+    "compare_at_price": 159,
+    "disc_2": 10,
+    "disc_3": 15,
+    "stock": 50,
+    "category": "gommage",
+    "is_featured": false,
+    "sort_order": 5,
+    "images": [
+      "/products/gel-gommage-visage-1.jpg"
+    ]
+  }
+]

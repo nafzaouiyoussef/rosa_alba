@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: "Sora", system-ui, sans-serif;
+  --font-lux: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-arabic: "Tajawal", "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply text-ink antialiased;
+  font-family: var(--font-sans);
+  background-color: #f2fafb;
+  background-image:
+    radial-gradient(60rem 40rem at 90% -10%, rgba(69, 221, 224, 0.28), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 20%, rgba(111, 221, 228, 0.20), transparent 60%),
+    radial-gradient(50rem 40rem at 70% 90%, rgba(241, 233, 220, 0.9), transparent 60%);
+  background-attachment: fixed;
+}
+/* fine film grain over everything: gives the pearl surfaces a tactile feel */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+h1, h2, h3, .font-serif { letter-spacing: -0.03em; }
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] .font-serif { letter-spacing: 0; }
+.font-lux { font-family: var(--font-lux); font-style: italic; font-weight: 500; letter-spacing: 0; }
+html[dir="rtl"] .font-lux { font-family: var(--font-arabic); font-style: normal; font-weight: 800; }
+
+html[dir="rtl"] body {
+  font-family: var(--font-arabic);
+}
+
+html[dir="rtl"] .font-serif {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn relative overflow-hidden text-white;
+    background: linear-gradient(135deg, #0f2a33 0%, #177b90 55%, #1fbfd0 100%);
+    box-shadow: 0 10px 30px -8px rgba(31, 191, 208, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.35) 50%, transparent 65%);
+    background-size: 220% 100%;
+    background-position: 160% 0;
+    transition: background-position 0.8s ease;
+  }
+  .btn-primary:hover::after { background-position: -60% 0; }
+  .btn-brand {
+    @apply btn text-ink;
+    background: linear-gradient(135deg, #8cf1f3, #45dde0);
+    box-shadow: 0 8px 24px -8px rgba(69, 221, 224, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+  .btn-ghost {
+    @apply btn border border-white/80 bg-white/50 text-ink backdrop-blur-xl hover:bg-white/80;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .section {
+    @apply py-12 sm:py-16;
+  }
+  .h-display {
+    @apply font-serif text-[2.6rem] font-extrabold leading-[1.02] sm:text-7xl;
+  }
+  .h-section {
+    @apply font-serif text-3xl font-bold leading-tight sm:text-5xl;
+  }
+  .input {
+    @apply w-full rounded-xl border border-ink/15 bg-white px-4 py-3.5 text-base outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-200;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink/80;
+  }
+  .card {
+    @apply rounded-3xl border border-white/80 bg-white/60 backdrop-blur-xl;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset, 0 20px 50px -24px rgba(23, 123, 144, 0.35);
+  }
+  .glass-dark {
+    @apply rounded-3xl border border-white/15 bg-white/[0.06] backdrop-blur-xl;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+  .text-aurora {
+    background: linear-gradient(100deg, #6fdde4, #1fbfd0 50%, #1799b0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .neon-ring { box-shadow: 0 0 0 1px rgba(69, 221, 224, 0.5), 0 0 40px -6px rgba(69, 221, 224, 0.55); }
+}
+
+/* hide scrollbar for snap carousels */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* iOS: avoid input zoom */
+input, select, textarea { font-size: 16px; }
+
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.pop { animation: pop 0.25s ease-out; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shine {
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 2.8s linear infinite;
+}
+
+/* ---- 2030 motion ---- */
+@keyframes float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-14px) rotate(var(--r,0deg)); } }
+.float { animation: float 7s ease-in-out infinite; }
+@keyframes drift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,-30px) scale(1.15); } 100% { transform: translate(0,0) scale(1); } }
+.orb { position: absolute; border-radius: 9999px; filter: blur(70px); animation: drift 14s ease-in-out infinite; pointer-events: none; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+html[dir="rtl"] .marquee { animation-direction: reverse; }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.8s cubic-bezier(.2,.7,.2,1) both; }
+@supports (animation-timeline: view()) {
+  .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float, .orb, .marquee, .rise, .reveal { animation: none !important; }
+}
