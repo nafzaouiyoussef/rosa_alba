@@ -27,7 +27,7 @@ export default function StickyOrderBar({ product }: { product: Product }) {
           <div className="truncate text-sm font-semibold">{pick(product, "name", lang)}</div>
           <div className="text-base font-bold">{fmt(Number(product.price), lang)}</div>
         </div>
-        <a href="#order" className="btn-primary shine relative overflow-hidden !px-6 !py-3 text-sm">
+        <a href="#order" className="btn-primary relative overflow-hidden !px-6 !py-3 text-sm">
           {tr(lang, "Commander", "اطلبي الآن")}
         </a>
       </div>
