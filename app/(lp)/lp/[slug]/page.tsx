@@ -17,7 +17,7 @@ import { legalLinks } from "@/lib/legal";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const p = await getProduct(params.slug);
-  return p ? { title: `${p.name_fr} · Rosa Alba`, description: p.tagline_fr, robots: { index: false } } : {};
+  return p ? { title: `${p.name_fr} · Rosa Alba`, description: p.tagline_fr, robots: { index: false, follow: false }, alternates: { canonical: `/products/${p.slug}` } } : {};
 }
 
 /**

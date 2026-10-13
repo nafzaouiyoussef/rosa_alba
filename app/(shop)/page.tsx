@@ -8,6 +8,7 @@ import ProductImage from "@/components/ProductImage";
 import FaqList from "@/components/FaqList";
 import Reviews from "@/components/Reviews";
 import BundleTeaser from "@/components/BundleTeaser";
+import { faqLd, organizationLd } from "@/lib/seo";
 
 export default async function Home() {
   const lang = getLang();
@@ -24,8 +25,13 @@ export default async function Home() {
     { n: "3", t: tr(lang, "Payez à la réception", "ادفعي عند الاستلام"), d: tr(lang, "Livraison gratuite chez vous, paiement en espèces.", "توصيل مجاني إلى باب بيتك والدفع نقداً.") }
   ];
 
+  const ld = [organizationLd(settings), faqLd(faqs(lang, settings.delivery_days))];
+
   return (
     <>
+      {ld.map((d, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
+      ))}
       {/* HERO — "aqua pearl": bright water-light background, product in an arch with ripples */}
       <section className="relative mx-3 mt-2 overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#e9fbfc] via-[#c9f4f6] to-[#aeeaee] sm:mx-6 sm:rounded-[3rem]">
         <div className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(40rem 26rem at 85% 30%, rgba(255,255,255,.95), transparent 60%), radial-gradient(30rem 20rem at 5% 90%, rgba(255,255,255,.7), transparent 60%)" }} />

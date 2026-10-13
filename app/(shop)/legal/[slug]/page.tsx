@@ -9,7 +9,7 @@ import { tr } from "@/lib/tr";
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const s = await getSettings();
   const p = getLegalPage(params.slug, "fr", s);
-  return p ? { title: p.title, description: p.intro || p.title } : {};
+  return p ? { title: p.title, description: p.intro || p.title, alternates: { canonical: `/legal/${params.slug}` } } : {};
 }
 
 export default async function LegalPage({ params }: { params: { slug: string } }) {

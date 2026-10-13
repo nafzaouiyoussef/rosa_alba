@@ -10,7 +10,9 @@ import Reviews from "@/components/Reviews";
 
 export const metadata: Metadata = {
   title: "Routine complète Rosa Alba",
-  description: "Les 5 soins Rosa Alba en un pack, avec remise. Livraison gratuite, paiement à la livraison."
+  description: "Les 5 soins Rosa Alba en un pack, avec remise. Livraison gratuite partout au Maroc, paiement à la livraison.",
+  alternates: { canonical: "/routine" },
+  openGraph: { title: "Routine complète Rosa Alba", description: "Les 5 soins Rosa Alba en un pack, avec remise.", images: ["/og.jpg"] }
 };
 
 export default async function RoutinePage() {

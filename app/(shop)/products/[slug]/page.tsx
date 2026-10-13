@@ -13,15 +13,21 @@ import FaqList from "@/components/FaqList";
 import Reviews from "@/components/Reviews";
 import ProductCard from "@/components/ProductCard";
 import Stars from "@/components/Stars";
+import { abs, breadcrumbLd, clip, productLd } from "@/lib/seo";
 import BundleTeaser from "@/components/BundleTeaser";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const p = await getProduct(params.slug);
   if (!p) return {};
+  const title = `${p.name_fr}${p.size ? ` ${p.size}` : ""} — Livraison gratuite au Maroc`;
+  const description = clip(`${p.tagline_fr}. ${p.description_fr}`);
+  const images = (p.images?.length ? p.images : ["/og.jpg"]).slice(0, 3).map((i) => ({ url: abs(i), alt: p.name_fr }));
   return {
-    title: p.name_fr,
-    description: p.tagline_fr,
-    openGraph: { title: `${p.name_fr} · Rosa Alba`, description: p.tagline_fr, images: p.images?.[0] ? [p.images[0]] : [] }
+    title,
+    description,
+    alternates: { canonical: `/products/${p.slug}` },
+    openGraph: { type: "website", url: abs(`/products/${p.slug}`), title: `${p.name_fr} · Rosa Alba`, description, images },
+    twitter: { card: "summary_large_image", title: `${p.name_fr} · Rosa Alba`, description, images: images.map((i) => i.url) }
   };
 }
 
@@ -40,25 +46,20 @@ export default async function ProductPage({ params }: { params: { slug: string }
       : 0;
   const related = all.filter((p) => p.id !== product.id).slice(0, 3);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name_fr,
-    description: product.description_fr,
-    image: product.images || [],
-    brand: { "@type": "Brand", name: "Rosa Alba" },
-    ...(reviews.length ? { aggregateRating: { "@type": "AggregateRating", ratingValue: avg.toFixed(1), reviewCount: reviews.length } } : {}),
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "MAD",
-      price: Number(product.price),
-      availability: product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
-    }
-  };
+  const jsonLd = [
+    productLd(product, settings, reviews.length ? { avg, count: reviews.length } : undefined),
+    breadcrumbLd([
+      { name: "Accueil", path: "/" },
+      { name: "Produits", path: "/#produits" },
+      { name: product.name_fr, path: `/products/${product.slug}` }
+    ])
+  ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {jsonLd.map((d, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(d) }} />
+      ))}
       <ViewContentTracker id={product.id} name={product.name_fr} price={Number(product.price)} />
 
       <div className="container-x pb-10 pt-6 sm:pt-10">
