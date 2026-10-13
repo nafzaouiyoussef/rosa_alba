@@ -58,6 +58,17 @@ export default function SettingsForm({ initial }: { initial: Settings }) {
       </section>
 
       <section className="rounded-2xl bg-white p-5 shadow-soft sm:p-6">
+        <h2 className="mb-1 font-semibold">Informations légales &amp; contact</h2>
+        <p className="mb-4 text-xs text-ink/55">Affichées sur les pages Contact, Mentions et politiques (utile pour la vérification Meta / TikTok / Google).</p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="Nom de la société / marque"><input className="input" value={s.business_name} onChange={(e) => set("business_name", e.target.value)} /></Field>
+          <Field label="Email de contact"><input type="email" className="input" value={s.contact_email} onChange={(e) => set("contact_email", e.target.value)} /></Field>
+          <Field label="Adresse"><input className="input" value={s.business_address} onChange={(e) => set("business_address", e.target.value)} /></Field>
+          <Field label="ICE / RC (si vous en avez)"><input className="input" value={s.business_id} onChange={(e) => set("business_id", e.target.value)} /></Field>
+        </div>
+      </section>
+
+      <section className="rounded-2xl bg-white p-5 shadow-soft sm:p-6">
         <h2 className="mb-1 font-semibold">Pixels de tracking</h2>
         <p className="mb-4 text-xs text-ink/55">
           Collez uniquement l&apos;ID (pas le code). Événements envoyés : ViewContent, AddToCart, InitiateCheckout, Purchase (page de remerciement).

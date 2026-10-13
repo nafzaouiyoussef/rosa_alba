@@ -2,13 +2,14 @@ import Link from "next/link";
 import type { Lang, Settings } from "@/lib/types";
 import { tr } from "@/lib/tr";
 import { waLink } from "@/lib/wa";
+import { legalLinks } from "@/lib/legal";
 
 export default function Footer({ lang, settings }: { lang: Lang; settings: Settings }) {
   const wa = waLink(settings.whatsapp);
   return (
     <footer className="relative mt-10 overflow-hidden rounded-t-[2.5rem] bg-[#06181e] pb-28 pt-14 text-white/80 sm:pb-12">
       <div className="orb -top-24 start-1/4 h-64 w-64 bg-brand-500/30" />
-      <div className="container-x relative grid gap-8 sm:grid-cols-3">
+      <div className="container-x relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="font-serif text-3xl font-bold text-white">ROSA ALBA</div>
           <p className="mt-3 max-w-xs text-sm leading-relaxed">
@@ -25,6 +26,14 @@ export default function Footer({ lang, settings }: { lang: Lang; settings: Setti
             <li><Link href="/#produits" className="hover:text-white">{tr(lang, "Tous les produits", "كل المنتجات")}</Link></li>
             <li><Link href="/#faq" className="hover:text-white">FAQ</Link></li>
             <li><Link href="/checkout" className="hover:text-white">{tr(lang, "Mon panier", "سلتي")}</Link></li>
+          </ul>
+        </div>
+        <div className="text-sm">
+          <div className="mb-3 font-semibold text-white">{tr(lang, "Informations", "معلومات")}</div>
+          <ul className="space-y-2">
+            {legalLinks(lang).map((l) => (
+              <li key={l.slug}><Link href={`/legal/${l.slug}`} className="hover:text-white">{l.label}</Link></li>
+            ))}
           </ul>
         </div>
         <div className="text-sm">

@@ -13,6 +13,7 @@ import FaqList from "@/components/FaqList";
 import Reviews from "@/components/Reviews";
 import LangToggle from "@/components/LangToggle";
 import BundleTeaser from "@/components/BundleTeaser";
+import { legalLinks } from "@/lib/legal";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const p = await getProduct(params.slug);
@@ -168,7 +169,14 @@ export default async function LandingPage({
         </div>
       </section>
 
-      <footer className="pb-28 text-center text-xs text-ink/45 sm:pb-8">© {new Date().getFullYear()} Rosa Alba</footer>
+      <footer className="pb-28 text-center text-xs text-ink/50 sm:pb-8">
+        <div className="mb-2 flex flex-wrap justify-center gap-x-4 gap-y-1">
+          {legalLinks(lang).filter((l) => ["refund", "privacy", "terms", "contact"].includes(l.slug)).map((l) => (
+            <a key={l.slug} href={`/legal/${l.slug}`} className="underline">{l.label}</a>
+          ))}
+        </div>
+        © {new Date().getFullYear()} Rosa Alba
+      </footer>
       <StickyOrderBar product={product} />
     </>
   );

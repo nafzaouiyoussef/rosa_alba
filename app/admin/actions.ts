@@ -237,7 +237,11 @@ export async function saveSettings(input: Partial<Settings>): Promise<Result> {
       bundle_enabled: input.bundle_enabled !== false,
       bundle_discount_pct: Math.min(50, Math.max(0, Number(input.bundle_discount_pct) || 0)),
       upsell_discount_pct: Math.min(50, Math.max(0, Number(input.upsell_discount_pct) || 0)),
-      hero_image: clean(input.hero_image, 500)
+      hero_image: clean(input.hero_image, 500),
+      contact_email: clean(input.contact_email, 120),
+      business_name: clean(input.business_name, 120),
+      business_address: clean(input.business_address, 250),
+      business_id: clean(input.business_id, 80)
     };
     const { error } = await client().from("settings").upsert({ key: "store", value, updated_at: new Date().toISOString() });
     if (error) return { ok: false, error: error.message };

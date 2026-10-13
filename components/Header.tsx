@@ -12,7 +12,7 @@ export default function Header({ lang, settings }: { lang: Lang; settings: Setti
         <div className="bg-ink px-4 py-2 text-center text-xs font-medium tracking-wide text-white sm:text-sm">{ann}</div>
       )}
       <header className="sticky top-3 z-40 px-3 sm:px-6">
-        <div className="mx-auto mt-3 flex h-14 max-w-6xl items-center justify-between gap-3 rounded-full border border-white/80 bg-white/55 px-3 ps-4 shadow-[0_10px_40px_-14px_rgba(23,123,144,0.45)] backdrop-blur-2xl sm:h-16 sm:px-5">
+        <div className="mx-auto mt-3 flex h-14 max-w-6xl items-center justify-between gap-3 rounded-full border border-white/80 bg-white/85 px-3 ps-4 shadow-[0_10px_40px_-14px_rgba(23,123,144,0.45)] backdrop-blur-2xl sm:h-16 sm:px-5">
           <Link href="/" className="flex items-center gap-2.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.png" alt="Rosa Alba" width={36} height={36} className="h-9 w-9 rounded-full ring-2 ring-white" />

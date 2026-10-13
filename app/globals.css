@@ -134,6 +134,10 @@ input, select, textarea { font-size: 16px; }
   animation: shimmer 2.8s linear infinite;
 }
 
+/* water ripples (hero) */
+@keyframes ripple { 0% { transform: scale(0.55); opacity: 0.9; } 100% { transform: scale(1.35); opacity: 0; } }
+.ripple { animation: ripple 5s ease-out infinite; }
+
 /* ---- 2030 motion ---- */
 @keyframes float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-14px) rotate(var(--r,0deg)); } }
 .float { animation: float 7s ease-in-out infinite; }
@@ -148,5 +152,5 @@ html[dir="rtl"] .marquee { animation-direction: reverse; }
   .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .float, .orb, .marquee, .rise, .reveal { animation: none !important; }
+  .float, .orb, .marquee, .rise, .reveal, .ripple { animation: none !important; }
 }

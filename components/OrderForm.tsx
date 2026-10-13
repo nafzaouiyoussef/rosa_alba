@@ -140,6 +140,14 @@ export default function OrderForm({ items, total, shipping, onSuccess, ctaLabel,
       <p className="text-center text-xs text-ink/55">
         {tr(lang, "🔒 Aucun paiement en ligne. Nous vous appelons pour confirmer.", "🔒 لا يوجد دفع عبر الإنترنت. سنتصل بك لتأكيد الطلب.")}
       </p>
+      <p className="text-center text-[11px] leading-snug text-ink/45">
+        {tr(lang, "En commandant, vous acceptez nos ", "بتقديم الطلب فأنت توافق على ")}
+        <a href="/legal/terms" target="_blank" className="underline">{tr(lang, "conditions de vente", "شروط البيع")}</a>
+        {tr(lang, ", notre ", " و")}
+        <a href="/legal/refund" target="_blank" className="underline">{tr(lang, "politique de retour", "سياسة الإرجاع")}</a>
+        {tr(lang, " et notre ", " و")}
+        <a href="/legal/privacy" target="_blank" className="underline">{tr(lang, "politique de confidentialité", "سياسة الخصوصية")}</a>.
+      </p>
     </form>
   );
 }

@@ -26,28 +26,22 @@ export default async function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative mx-3 mt-[-4.5rem] overflow-hidden rounded-[2rem] bg-[#04141a] pt-24 text-white sm:mx-6 sm:rounded-[3rem] sm:pt-32">
-        <div className="orb -start-20 top-10 h-72 w-72 bg-brand-400/50" />
-        <div className="orb end-0 top-40 h-80 w-80 bg-[#1799b0]/40 [animation-delay:-5s]" />
-        <div className="orb bottom-0 start-1/3 h-64 w-64 bg-[#a9ecf0]/30 [animation-delay:-9s]" />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.15]"
-          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at 50% 30%, black, transparent 70%)" }}
-        />
-        <div className="container-x relative grid items-center gap-12 pb-16 md:grid-cols-[1.05fr_1fr] md:pb-24">
-          <div className="rise">
-            <span className="glass-dark inline-flex items-center gap-2 !rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-200">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-brand-400 shadow-[0_0_12px_#45dde0]" />
-              {tr(lang, "Biotech beauté · Maroc", "جمال طبيعي · المغرب")}
+      {/* HERO — "aqua pearl": bright water-light background, product in an arch with ripples */}
+      <section className="relative mx-3 mt-2 overflow-hidden rounded-[2rem] bg-gradient-to-b from-[#e9fbfc] via-[#c9f4f6] to-[#aeeaee] sm:mx-6 sm:rounded-[3rem]">
+        <div className="pointer-events-none absolute inset-0 opacity-70" style={{ backgroundImage: "radial-gradient(40rem 26rem at 85% 30%, rgba(255,255,255,.95), transparent 60%), radial-gradient(30rem 20rem at 5% 90%, rgba(255,255,255,.7), transparent 60%)" }} />
+        <div className="container-x relative grid items-center gap-8 pb-12 pt-12 md:grid-cols-[1.05fr_1fr] md:gap-4 md:pb-20 md:pt-16">
+          <div className="rise order-2 md:order-1">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-800 backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-brand-500" />
+              {tr(lang, "Soins naturels · Maroc", "عناية طبيعية · المغرب")}
             </span>
-            <h1 className="h-display mt-6">
-              {tr(lang, "La peau de demain,", "بشرة الغد،")}{" "}
-              <span className="text-aurora font-lux block pb-2 text-[1.15em]">
-                {tr(lang, "née des huiles du Maroc.", "من زيوت المغرب.")}
+            <h1 className="h-display mt-6 text-ink">
+              {tr(lang, "Une peau fraîche", "بشرة منتعشة")}{" "}
+              <span className="font-lux block pb-2 text-[1.15em] text-brand-700">
+                {tr(lang, "comme l'eau claire.", "كالماء الصافي.")}
               </span>
             </h1>
-            <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/70">
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink/70">
               {tr(
                 lang,
                 "Sérum, crème de nuit, masque, huile sèche et gommage : une routine complète à l'argan et à la figue de Barbarie, livrée chez vous.",
@@ -56,69 +50,62 @@ export default async function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {settings.bundle_enabled ? (
-                <Link href="/routine" className="btn-brand text-base">
+                <Link href="/routine" className="btn-primary text-base">
                   {tr(lang, `Routine complète −${settings.bundle_discount_pct}%`, `الروتين الكامل −${settings.bundle_discount_pct}%`)} →
                 </Link>
               ) : (
-                <Link href="#produits" className="btn-brand text-base">{tr(lang, "Découvrir les soins", "اكتشفي المنتجات")}</Link>
+                <Link href="#produits" className="btn-primary text-base">{tr(lang, "Découvrir les soins", "اكتشفي المنتجات")}</Link>
               )}
-              <Link href="#produits" className="btn border border-white/25 bg-white/10 text-white backdrop-blur hover:bg-white/20">
-                {tr(lang, "Voir les produits", "شاهدي المنتجات")}
-              </Link>
+              <Link href="#produits" className="btn-ghost">{tr(lang, "Voir les produits", "شاهدي المنتجات")}</Link>
             </div>
-            <dl className="mt-10 grid max-w-md grid-cols-3 gap-3 text-center">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-ink/70">
               {[
-                ["100%", tr(lang, "naturel", "طبيعي")],
-                ["0 MAD", tr(lang, "livraison", "التوصيل")],
-                ["COD", tr(lang, "payez à la réception", "الدفع عند الاستلام")]
-              ].map(([n, l]) => (
-                <div key={l} className="glass-dark !rounded-2xl px-2 py-3">
-                  <dt className="font-serif text-xl font-extrabold text-brand-300">{n}</dt>
-                  <dd className="text-[11px] leading-tight text-white/60">{l}</dd>
-                </div>
+                tr(lang, "Livraison gratuite", "توصيل مجاني"),
+                tr(lang, "Paiement à la livraison", "الدفع عند الاستلام"),
+                tr(lang, "100 % naturel", "طبيعي 100%")
+              ].map((t) => (
+                <li key={t} className="flex items-center gap-2"><span className="text-brand-600">✓</span>{t}</li>
               ))}
-            </dl>
+            </ul>
           </div>
 
-          <div className="relative mx-auto h-[30rem] w-full max-w-md sm:h-[36rem]">
-            <div className="absolute inset-8 rounded-full bg-gradient-to-tr from-brand-400/30 via-[#1799b0]/25 to-[#a9ecf0]/25 blur-2xl" />
+          <div className="relative order-1 mx-auto flex w-full max-w-md items-end justify-center md:order-2">
+            {/* water ripples */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 aspect-square">
+              {[0, 1, 2].map((i) => (
+                <span key={i} className="ripple absolute inset-[10%] rounded-full border border-white/90" style={{ animationDelay: `${i * 1.6}s` }} />
+              ))}
+            </div>
             {settings.hero_image ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={settings.hero_image} alt="Rosa Alba" className="absolute inset-0 h-full w-full rounded-[2.5rem] object-cover" />
+              <img src={settings.hero_image} alt="Rosa Alba" className="relative aspect-[4/5] w-[78%] rounded-t-full rounded-b-[2rem] object-cover shadow-[0_40px_80px_-30px_rgba(23,123,144,0.7)]" />
             ) : (
-              products.slice(0, 4).map((p, i) => {
-                const pos = [
-                  "start-0 top-0 w-[48%] [--r:-4deg]",
-                  "end-0 top-[7%] w-[47%] [--r:5deg] [animation-delay:-2s]",
-                  "start-[3%] top-[50%] w-[45%] [--r:3deg] [animation-delay:-4s]",
-                  "end-[2%] top-[55%] w-[46%] [--r:-3deg] [animation-delay:-6s]"
-                ][i];
-                return (
-                  <Link
-                    key={p.id}
-                    href={`/products/${p.slug}`}
-                    className={`float group absolute ${pos} overflow-hidden rounded-3xl border border-white/30 bg-white/10 p-1.5 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur`}
-                  >
-                    <div className="aspect-[3/4] overflow-hidden rounded-[1.25rem]">
-                      <ProductImage product={p} lang={lang} priority={i < 2} className="transition duration-700 group-hover:scale-110" />
-                    </div>
-                    <span className="absolute inset-x-3 bottom-3 truncate rounded-full bg-black/45 px-3 py-1 text-center text-[11px] font-semibold backdrop-blur">
-                      {tr(lang, p.name_fr, p.name_ar)}
-                    </span>
+              <div className="relative w-[78%]">
+                <div className="aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[2rem] border-[6px] border-white/80 shadow-[0_40px_80px_-30px_rgba(23,123,144,0.7)]">
+                  {(products.find((p) => p.slug === "masque-eclat-rose") || products[0]) && (
+                    <ProductImage product={(products.find((p) => p.slug === "masque-eclat-rose") || products[0])} lang={lang} priority />
+                  )}
+                </div>
+                <div className="float absolute -start-6 top-[18%] flex items-center gap-2 rounded-2xl bg-white/90 px-3 py-2 text-xs font-semibold shadow-soft backdrop-blur [--r:-3deg]">
+                  <span className="text-gold">★★★★★</span> {tr(lang, "100% naturel", "طبيعي 100%")}
+                </div>
+                {products[0] && (
+                  <Link href={`/products/${products[0].slug}`} className="float absolute -end-4 bottom-[10%] block w-[34%] overflow-hidden rounded-2xl border-4 border-white shadow-soft [--r:4deg] [animation-delay:-3s]">
+                    <div className="aspect-[3/4]"><ProductImage product={products[0]} lang={lang} /></div>
                   </Link>
-                );
-              })
+                )}
+              </div>
             )}
           </div>
         </div>
 
         {/* ticker */}
-        <div className="relative overflow-hidden border-t border-white/10 py-4" aria-hidden="true">
-          <div className="marquee gap-10 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.3em] text-white/45">
+        <div className="relative overflow-hidden border-t border-white/70 py-4" aria-hidden="true">
+          <div className="marquee gap-10 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.3em] text-brand-800/60">
             {[0, 1].map((k) => (
               <div key={k} className="flex shrink-0 gap-10 pe-10">
                 {["Argan", "Figue de Barbarie", "Macadamia", "Amande douce", "Aloe vera", "Rose", "Vitamine E", "100% naturel"].map((t) => (
-                  <span key={t + k} className="flex items-center gap-10">{t}<span className="text-brand-400">✦</span></span>
+                  <span key={t + k} className="flex items-center gap-10">{t}<span className="text-brand-500">✦</span></span>
                 ))}
               </div>
             ))}
