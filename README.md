@@ -47,6 +47,12 @@ Import the repo on https://vercel.com/new and add these environment variables:
 Deploy, then connect your domain (Vercel → Settings → Domains).
 > Vercel's free *Hobby* plan is meant for non-commercial use — for a live shop check their terms and use *Pro*, or host on any Node 18+ server (`npm run build && npm start`).
 
+### Order e-mail alerts (optional, Resend)
+Add `RESEND_API_KEY` (from https://resend.com/api-keys) to get an e-mail for every new order.
+`ORDER_NOTIFY_EMAIL` (default: the owner's address, comma-separate several) and `RESEND_FROM` are optional.
+Without a verified domain Resend only delivers from `onboarding@resend.dev` to the e-mail of your Resend account;
+verify your own domain in Resend to send from `orders@your-domain.ma`.
+
 ### 4. First login (5 minutes)
 1. Open `/admin` → log in with `ADMIN_PASSWORD`.
 2. **Réglages & tracking**: WhatsApp number, delivery time, Meta/TikTok/GA4 IDs.

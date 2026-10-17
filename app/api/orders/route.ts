@@ -4,6 +4,7 @@ import { getProducts, getProductsByIds, getSettings } from "@/lib/data";
 import { lineTotal } from "@/lib/pricing";
 import { normalizePhone } from "@/lib/cities";
 import type { OrderItem } from "@/lib/types";
+import { notifyNewOrder } from "@/lib/notify";
 
 export const dynamic = "force-dynamic";
 
@@ -111,7 +112,7 @@ export async function POST(req: Request) {
       utm: safeUtm,
       lang
     })
-    .select("order_number, upsell_token")
+    .select("id, order_number, upsell_token")
     .single();
 
   if (error || !order) {
@@ -124,6 +125,9 @@ export async function POST(req: Request) {
     const p = products.find((x) => x.id === it.product_id)!;
     await c.from("products").update({ stock: Math.max(0, p.stock - it.qty) }).eq("id", p.id);
   }
+
+  // e-mail the shop owner (never blocks or fails the order)
+  await notifyNewOrder({ id: order.id, order_number: order.order_number, customer_name: name, phone, city, address, notes, items, subtotal, shipping, total, source, utm: safeUtm });
 
   return NextResponse.json({ ok: true, order_number: order.order_number, token: order.upsell_token });
 }
