@@ -70,7 +70,16 @@ export async function notifyNewOrder(o: NewOrder): Promise<void> {
         from,
         to,
         subject: `Nouvelle commande ${o.order_number} — ${mad(o.total)} — ${o.city}`,
-        html
+        html,
+        text: [
+          `Nouvelle commande ${o.order_number}`,
+          ...o.items.map((i) => `- ${i.name} x${i.qty} : ${mad(i.line_total)}`),
+          `Total à encaisser : ${mad(o.total)}`,
+          `Client : ${o.customer_name} · ${o.phone}`,
+          `Adresse : ${o.city} — ${o.address}`,
+          o.notes ? `Note : ${o.notes}` : "",
+          `Admin : ${adminUrl}`
+        ].filter(Boolean).join("\n")
       }),
       signal: ctrl.signal
     });
