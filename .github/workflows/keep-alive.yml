@@ -1,0 +1,13 @@
+name: keep-alive
+# Pings the site (which queries Supabase) so the free database never pauses for inactivity.
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -fsS -m 60 https://rosa-alba-five.vercel.app/ > /dev/null
+          curl -fsS -m 60 https://rosaalba-production.up.railway.app/ > /dev/null
