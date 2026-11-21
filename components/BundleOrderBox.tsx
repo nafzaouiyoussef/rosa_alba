@@ -6,18 +6,21 @@ import { pick, tr } from "@/lib/tr";
 import { useLang } from "./Providers";
 import OrderForm from "./OrderForm";
 import ProductImage from "./ProductImage";
+import { essentialPct, essentialProducts, giftProduct } from "@/lib/offers";
 
 /** "Routine complète" pack: every in-stock product at the bundle discount, ordered with the same COD form. */
-export default function BundleOrderBox({ products, settings }: { products: Product[]; settings: Settings }) {
+export default function BundleOrderBox({ products, settings, kind = "full" }: { products: Product[]; settings: Settings; kind?: "full" | "essential" }) {
   const lang = useLang();
-  const pct = Math.max(0, Math.min(50, Number(settings.bundle_discount_pct) || 0));
-  const list = products.filter((p) => p.stock > 0);
+  const essential = kind === "essential";
+  const pct = essential ? essentialPct(settings) : Math.max(0, Math.min(50, Number(settings.bundle_discount_pct) || 0));
+  const list = essential ? essentialProducts(products) : products.filter((p) => p.stock > 0);
+  const gift = essential ? giftProduct(products, settings) : null;
   const full = list.reduce((s, p) => s + Number(p.price), 0);
   const total = list.reduce((s, p) => s + lineTotal(p, 1, pct), 0);
 
   return (
     <div id="order" className="card scroll-mt-24 p-5 sm:p-6">
-      <h2 className="font-serif text-2xl font-bold">{tr(lang, "Commandez la routine complète", "اطلبي الروتين الكامل")}</h2>
+      <h2 className="font-serif text-2xl font-bold">{essential ? tr(lang, "Commandez le Pack Essentiel", "اطلبي الباقة الأساسية") : tr(lang, "Commandez la routine complète", "اطلبي الروتين الكامل")}</h2>
       <p className="mt-1 text-sm text-ink/65">
         {tr(lang, "Paiement à la livraison · Livraison gratuite", "الدفع عند الاستلام · توصيل مجاني")}
       </p>
@@ -32,6 +35,15 @@ export default function BundleOrderBox({ products, settings }: { products: Produ
             <span className="text-sm text-ink/60 line-through">{fmt(Number(p.price), lang)}</span>
           </li>
         ))}
+        {gift && (
+          <li className="flex items-center gap-3 py-2.5">
+            <span className="h-14 w-12 shrink-0 overflow-hidden rounded-lg">
+              <ProductImage product={gift} lang={lang} />
+            </span>
+            <span className="flex-1 text-sm font-medium leading-tight">{pick(gift, "name", lang) as string}</span>
+            <span className="rounded-full bg-gold/25 px-2 py-0.5 text-xs font-bold text-[#7a5d1c]">{tr(lang, "OFFERT", "هدية")}</span>
+          </li>
+        )}
       </ul>
 
       <div className="mt-4 flex items-end justify-between rounded-2xl border-2 border-brand-500 bg-white px-4 py-3">
@@ -48,11 +60,11 @@ export default function BundleOrderBox({ products, settings }: { products: Produ
 
       <div className="mt-5">
         <OrderForm
-          bundle
+          bundle={essential ? "essential" : true}
           items={list.map((p) => ({ product_id: p.id, qty: 1, name: pick(p, "name", lang) as string, price: Number(p.price) }))}
           total={total}
           shipping={settings.shipping_fee}
-          ctaLabel={tr(lang, "Commander ma routine — Paiement à la livraison", "اطلبي روتيني — الدفع عند الاستلام")}
+          ctaLabel={essential ? tr(lang, "Commander mon pack — Paiement à la livraison", "اطلبي باقتي — الدفع عند الاستلام") : tr(lang, "Commander ma routine — Paiement à la livraison", "اطلبي روتيني — الدفع عند الاستلام")}
         />
       </div>
     </div>

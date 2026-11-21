@@ -5,6 +5,7 @@ import { lineTotal } from "@/lib/pricing";
 import { normalizePhone } from "@/lib/cities";
 import type { OrderItem } from "@/lib/types";
 import { notifyNewOrder } from "@/lib/notify";
+import { ESSENTIAL_SLUGS, giftProduct } from "@/lib/offers";
 
 export const dynamic = "force-dynamic";
 
@@ -39,9 +40,25 @@ export async function POST(req: Request) {
 
   // merge duplicate product ids, clamp quantities
   const wanted = new Map<string, number>();
-  const bundle = body.bundle === true && settings.bundle_enabled;
-  const bundlePct = bundle ? Math.max(0, Math.min(50, Number(settings.bundle_discount_pct) || 0)) : 0;
-  if (bundle) {
+  const essential = body.bundle === "essential" && settings.bundle2_enabled;
+  const bundle = (body.bundle === true && settings.bundle_enabled) || essential;
+  const bundlePct = essential
+    ? Math.max(0, Math.min(50, Number(settings.bundle2_discount_pct) || 0))
+    : bundle
+      ? Math.max(0, Math.min(50, Number(settings.bundle_discount_pct) || 0))
+      : 0;
+  let gift: Awaited<ReturnType<typeof giftProduct>> = null;
+  if (essential) {
+    // "Pack Essentiel": serum + night cream + mask at the Essentiel discount, plus a free gift product (all computed here)
+    const all = await getProducts();
+    for (const slug of ESSENTIAL_SLUGS) {
+      const p = all.find((x) => x.slug === slug);
+      if (!p || p.stock < 1) return bad(lang === "ar" ? "العرض غير متوفر حالياً." : "Offre indisponible pour le moment.");
+      wanted.set(p.id, 1);
+    }
+    gift = giftProduct(all, settings);
+    if (gift && !wanted.has(gift.id)) wanted.set(gift.id, 1);
+  } else if (bundle) {
     // "Routine complète": one of every active, in-stock product, at the bundle discount (computed here, never trusted from the browser)
     for (const p of await getProducts()) if (p.stock > 0) wanted.set(p.id, 1);
     if (wanted.size < 2) return bad(lang === "ar" ? "العرض غير متوفر حالياً." : "Offre indisponible pour le moment.");
@@ -64,11 +81,12 @@ export async function POST(req: Request) {
         lang === "ar" ? `الكمية المتوفرة من ${p.name_ar || p.name_fr} غير كافية.` : `Stock insuffisant pour ${p.name_fr}.`
       );
     }
-    const total = lineTotal(p, qty, bundlePct);
+    const isGift = !!gift && p.id === gift.id;
+    const total = isGift ? 0 : lineTotal(p, qty, bundlePct);
     items.push({
       product_id: p.id,
       slug: p.slug,
-      name: p.name_fr,
+      name: isGift ? `${p.name_fr} (offert)` : p.name_fr,
       qty,
       unit_price: Number(p.price),
       line_total: total,

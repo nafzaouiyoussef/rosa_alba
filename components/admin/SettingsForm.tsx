@@ -86,8 +86,13 @@ export default function SettingsForm({ initial }: { initial: Settings }) {
           <input type="checkbox" className="h-5 w-5 accent-[#1799b0]" checked={s.upsell_enabled} onChange={(e) => set("upsell_enabled", e.target.checked)} />
           Proposer un produit supplémentaire à prix réduit après la commande
         </label>
+        <label className="mt-4 flex items-center gap-2 text-sm font-medium">
+          <input type="checkbox" className="h-5 w-5 accent-[#1799b0]" checked={s.gift_enabled} onChange={(e) => set("gift_enabled", e.target.checked)} />
+          Pack Essentiel : offrir le gel gommage visage
+        </label>
         <div className="mt-4 max-w-xs">
           <Field label="Remise pack Routine complète (%)"><input type="number" min={0} max={50} className="input" value={s.bundle_discount_pct} onChange={(e) => set("bundle_discount_pct", Number(e.target.value))} /></Field>
+          <Field label="Remise Pack Essentiel (%)"><input type="number" min={0} max={50} className="input" value={s.bundle2_discount_pct} onChange={(e) => set("bundle2_discount_pct", Number(e.target.value))} /></Field>
           <Field label="Remise upsell (%)"><input type="number" min={0} max={50} className="input" value={s.upsell_discount_pct} onChange={(e) => set("upsell_discount_pct", Number(e.target.value))} /></Field>
         </div>
       </section>

@@ -148,7 +148,7 @@ export default async function Home() {
               <div key={p.id} className="reveal"><ProductCard product={p} lang={lang} /></div>
             ))}
           </div>
-          <div className="mt-8"><BundleTeaser products={products} settings={settings} lang={lang} /></div>
+          <div className="mt-8 space-y-4"><BundleTeaser products={products} settings={settings} lang={lang} /><BundleTeaser kind="essential" products={products} settings={settings} lang={lang} /></div>
         </div>
       </section>
 

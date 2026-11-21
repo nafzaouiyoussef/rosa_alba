@@ -90,6 +90,9 @@ export type Settings = {
   upsell_discount_pct: number;
   bundle_enabled: boolean;
   bundle_discount_pct: number;
+  bundle2_enabled: boolean;
+  bundle2_discount_pct: number;
+  gift_enabled: boolean;
   hero_image: string;
   contact_email: string;
   business_name: string;
@@ -112,6 +115,9 @@ export const DEFAULT_SETTINGS: Settings = {
   upsell_discount_pct: 10,
   bundle_enabled: true,
   bundle_discount_pct: 20,
+  bundle2_enabled: true,
+  bundle2_discount_pct: 15,
+  gift_enabled: true,
   hero_image: "",
   contact_email: "",
   business_name: "",

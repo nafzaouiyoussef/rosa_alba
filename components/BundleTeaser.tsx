@@ -3,15 +3,18 @@ import type { Lang, Product, Settings } from "@/lib/types";
 import { fmt, lineTotal } from "@/lib/pricing";
 import { tr } from "@/lib/tr";
 import ProductImage from "./ProductImage";
+import { essentialPct, essentialProducts } from "@/lib/offers";
 
 /** Compact promo card linking to /routine. Hidden when the bundle is disabled. */
-export default function BundleTeaser({ products, settings, lang }: { products: Product[]; settings: Settings; lang: Lang }) {
-  if (!settings.bundle_enabled || products.length < 2) return null;
-  const pct = Math.max(0, Math.min(50, Number(settings.bundle_discount_pct) || 0));
+export default function BundleTeaser({ products: all, settings, lang, kind = "full" }: { products: Product[]; settings: Settings; lang: Lang; kind?: "full" | "essential" }) {
+  const essential = kind === "essential";
+  const products = essential ? essentialProducts(all) : all;
+  if (essential ? !settings.bundle2_enabled || products.length < 3 : !settings.bundle_enabled || products.length < 2) return null;
+  const pct = essential ? essentialPct(settings) : Math.max(0, Math.min(50, Number(settings.bundle_discount_pct) || 0));
   const total = products.reduce((s, p) => s + lineTotal(p, 1, pct), 0);
   return (
     <Link
-      href="/routine"
+      href={essential ? "/pack-essentiel" : "/routine"}
       className="group block overflow-hidden rounded-3xl bg-gradient-to-br from-ink to-brand-900 p-5 text-white shadow-soft sm:p-6"
     >
       <div className="flex items-center gap-4">
@@ -25,10 +28,10 @@ export default function BundleTeaser({ products, settings, lang }: { products: P
         <div className="min-w-0 flex-1">
           <span className="inline-block rounded-full bg-gold px-2.5 py-0.5 text-xs font-bold text-ink">-{pct}%</span>
           <div className="mt-1 font-serif text-xl font-bold leading-tight">
-            {tr(lang, "La routine complète", "الروتين الكامل")}
+            {essential ? tr(lang, "Pack Essentiel + gommage offert", "الباقة الأساسية + مقشر هدية") : tr(lang, "La routine complète", "الروتين الكامل")}
           </div>
           <div className="text-sm text-white/75">
-            {tr(lang, `${products.length} soins · ${fmt(total, lang)} · livraison gratuite`, `${products.length} منتجات · ${fmt(total, lang)} · توصيل مجاني`)}
+            {tr(lang, `${products.length} soins${settings.gift_enabled && essential ? " + 1 offert" : ""} · ${fmt(total, lang)} · livraison gratuite`, `${products.length} منتجات${settings.gift_enabled && essential ? " + هدية" : ""} · ${fmt(total, lang)} · توصيل مجاني`)}
           </div>
         </div>
         <span className="text-2xl transition group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1">→</span>

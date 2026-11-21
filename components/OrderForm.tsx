@@ -15,7 +15,7 @@ type Props = {
   shipping: number;
   onSuccess?: () => void;
   ctaLabel?: string;
-  bundle?: boolean;
+  bundle?: boolean | "essential";
 };
 
 export default function OrderForm({ items, total, shipping, onSuccess, ctaLabel, bundle }: Props) {
@@ -61,7 +61,7 @@ export default function OrderForm({ items, total, shipping, onSuccess, ctaLabel,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items: items.map((i) => ({ product_id: i.product_id, qty: i.qty })),
-          bundle: bundle === true,
+          bundle: bundle === "essential" ? "essential" : bundle === true,
           name,
           phone,
           city,
